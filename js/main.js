@@ -61,3 +61,19 @@ document.querySelector("#btnSearch").addEventListener("click", () => {
   }
   document.querySelector("#tbodySinhVien").innerHTML = trTimKiem.getInnerHTML();
 });
+
+function reset() {
+  let maSV = document.querySelector("#txtMaSV").value;
+  let tenSV = document.querySelector("#txtTenSV").value;
+  let mailSV = document.querySelector("#txtEmail").value;
+  let toan = document.querySelector("#txtDiemToan").value * 1;
+  let ly = document.querySelector("#txtDiemLy").value * 1;
+  let hoa = document.querySelector("#txtDiemHoa").value * 1;
+
+  maSV = "";
+  tenSV = "";
+  mailSV = "";
+  toan = "";
+  ly = "";
+  hoa = "";
+}
