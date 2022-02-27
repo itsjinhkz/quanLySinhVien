@@ -46,16 +46,16 @@ function deleteSinhVien(id) {
 }
 
 document.querySelector("#btnSearch").addEventListener("click", () => {
-  var tenNVValue = document.getElementById("txtSearch").value;
-  var tableNV = document.querySelectorAll("#tbodySinhVien tr");
-  var trTimKiem = tableNV[0];
+  var tenSVValue = document.getElementById("txtSearch").value;
+  var tableSV = document.querySelectorAll("#tbodySinhVien tr");
+  var trTimKiem = tableSV[0];
 
-  for (var i = 0; i < tableNV.length; i++) {
-    const currentTr = tableNV[i];
+  for (var i = 0; i < tableSV.length; i++) {
+    const currentTr = tableSV[i];
     const currentListTd = currentTr.querySelectorAll("td");
     const currentTdName = currentListTd[1].innerText;
 
-    if (currentTdName == tenNVValue) {
+    if (currentTdName == tenSVValue) {
       trTimKiem = currentTr;
     }
   }
