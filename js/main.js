@@ -18,11 +18,11 @@ document.querySelector("#btn-add").addEventListener("click", () => {
   let svObject = sinhVienController.layThongTinTuForm();
   let isValue = true;
   validator.kiemTraSo(svObject.ma, "spanMaSV");
+  validator.kiemTraChu(svObject.ten, "spanTenSV");
+  validator.kiemTraMail(svObject.mail, "spanEmailSV");
   validator.kiemTraDiem(svObject.toan, "spanToan");
   validator.kiemTraDiem(svObject.ly, "spanLy");
   validator.kiemTraDiem(svObject.hoa, "spanHoa");
-  validator.kiemTraChu(svObject.ten, "spanTenSV");
-  validator.kiemTraMail(svObject.mail, "spanEmailSV");
 
   sinhVienService
     .sinhVienAdd(svObject)
@@ -45,8 +45,19 @@ function deleteSinhVien(id) {
     });
 }
 
-function updateSinhVien(id) {}
+document.querySelector("#btnSearch").addEventListener("click", () => {
+  var tenNVValue = document.getElementById("txtSearch").value;
+  var tableNV = document.querySelectorAll("#tbodySinhVien tr");
+  var trTimKiem = tableNV[0];
 
-let regexNumber = new RegExp("^(0|[1-9][0-9]*)$");
+  for (var i = 0; i < tableNV.length; i++) {
+    const currentTr = tableNV[i];
+    const currentListTd = currentTr.querySelectorAll("td");
+    const currentTdName = currentListTd[1].innerText;
 
-console.log(sinhVienController.layThongTinTuForm().id);
+    if (currentTdName == tenNVValue) {
+      trTimKiem = currentTr;
+    }
+  }
+  document.querySelector("#tbodySinhVien").innerHTML = trTimKiem.getInnerHTML();
+});

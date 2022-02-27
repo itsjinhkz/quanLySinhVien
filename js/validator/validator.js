@@ -12,7 +12,7 @@ let validator = {
   },
   kiemTraChu: function (value, idErr) {
     let errEl = document.getElementById(idErr);
-    let parten = new RegExp("[A-Za-z]");
+    let parten = new RegExp("[^0-9]");
     if (parten.test(value)) {
       errEl.innerText = "";
       return true;
@@ -23,7 +23,9 @@ let validator = {
   },
   kiemTraMail: function (value, idErr) {
     let errEl = document.getElementById(idErr);
-    let parten = new RegExp("/S+@S+.S+/");
+    let parten = new RegExp(
+      "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    );
     if (parten.test(value)) {
       errEl.innerText = "";
       return true;
@@ -34,7 +36,7 @@ let validator = {
   },
   kiemTraDiem: function (value, idErr) {
     let errEl = document.getElementById(idErr);
-    let parten = new RegExp("^(0|[1-9][0-9]*)$");
+    let parten = new RegExp("^[^0-9]");
     if (parten.test(value)) {
       errEl.innerText = "";
       return true;
