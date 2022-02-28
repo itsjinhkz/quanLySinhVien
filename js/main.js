@@ -6,7 +6,6 @@ let renderTableDSSV = () => {
         let { id, ten, mail, toan, ly, hoa, ma } = item;
         return new sinhVien(id, ten, mail, toan, ly, hoa, ma);
       });
-      console.log("convertedArr", convertedArr);
       sinhVienController.renderTable(convertedArr);
     })
     .catch((err) => {
@@ -45,6 +44,23 @@ function deleteSinhVien(id) {
     });
 }
 
+function updateSinhVien(id) {
+  sinhVienService
+    .sinhVienDetail(id)
+    .then((res) => {
+      let svInfo = res.data;
+      document.querySelector("#txtMaSV").value = svInfo.ma;
+      document.querySelector("#txtTenSV").value = svInfo.ten;
+      document.querySelector("#txtEmail").value = svInfo.mail;
+      document.querySelector("#txtDiemToan").value = svInfo.toan;
+      document.querySelector("#txtDiemLy").value = svInfo.ly;
+      document.querySelector("#txtDiemHoa").value = svInfo.hoa;
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+}
+
 document.querySelector("#btnSearch").addEventListener("click", () => {
   var tenSVValue = document.getElementById("txtSearch").value;
   var tableSV = document.querySelectorAll("#tbodySinhVien tr");
@@ -62,18 +78,11 @@ document.querySelector("#btnSearch").addEventListener("click", () => {
   document.querySelector("#tbodySinhVien").innerHTML = trTimKiem.getInnerHTML();
 });
 
-function reset() {
-  let maSV = document.querySelector("#txtMaSV").value;
-  let tenSV = document.querySelector("#txtTenSV").value;
-  let mailSV = document.querySelector("#txtEmail").value;
-  let toan = document.querySelector("#txtDiemToan").value * 1;
-  let ly = document.querySelector("#txtDiemLy").value * 1;
-  let hoa = document.querySelector("#txtDiemHoa").value * 1;
-
-  maSV = "";
-  tenSV = "";
-  mailSV = "";
-  toan = "";
-  ly = "";
-  hoa = "";
+function reseta() {
+  document.querySelector("#txtMaSV").value = "";
+  document.querySelector("#txtTenSV").value = "";
+  document.querySelector("#txtEmail").value = "";
+  document.querySelector("#txtDiemToan").value = "";
+  document.querySelector("#txtDiemLy").value = "";
+  document.querySelector("#txtDiemHoa").value = "";
 }
